@@ -15,8 +15,17 @@ class TvShowsList extends StatelessWidget {
       itemCount: list.length,
       itemBuilder: (context, index) {
         final item = list[index];
+        final isLastItem = index == list.length - 1;
 
-        return TvShowItem(tvShow: item);
+        return Padding(
+          padding: EdgeInsets.only(
+            top: 16.0,
+            left: 32,
+            right: 32,
+            bottom: isLastItem ? 16.0 : 0.0,
+          ),
+          child: TvShowItem(tvShow: item),
+        );
       },
     );
   }

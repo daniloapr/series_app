@@ -33,7 +33,7 @@ class TvShow {
       summary: apiModel.summary,
       startDate: apiModel.startDate,
       endDate: apiModel.endDate,
-      genres: [],
+      genres: apiModel.genres,
     );
   }
 }
