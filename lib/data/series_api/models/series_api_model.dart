@@ -1,4 +1,4 @@
-class SeriesApiModel {
+class ShowsApiModel {
   final String id;
   final String name;
   final String imageMediumUrl;
@@ -13,7 +13,7 @@ class SeriesApiModel {
   // genres list
   // episodes list
 
-  SeriesApiModel({
+  ShowsApiModel({
     required this.id,
     required this.name,
     required this.imageMediumUrl,
@@ -23,12 +23,11 @@ class SeriesApiModel {
     required this.endDate,
   });
 
-  factory SeriesApiModel.fromJson(Map<String, dynamic> json) {
-    print(json['id']);
+  factory ShowsApiModel.fromJson(Map<String, dynamic> json) {
     final startDate = DateTime.parse(json['premiered']);
     final endDate = DateTime.tryParse(json['ended'] ?? '');
 
-    return SeriesApiModel(
+    return ShowsApiModel(
       id: json['id'].toString(),
       name: json['name'],
       imageMediumUrl: json['image']['medium'],

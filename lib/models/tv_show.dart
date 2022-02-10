@@ -27,7 +27,7 @@ class TvShow {
     required this.genres,
   });
 
-  factory TvShow.fromApi(SeriesApiModel apiModel) {
+  factory TvShow.fromApi(ShowsApiModel apiModel) {
     return TvShow(
       id: apiModel.id,
       name: apiModel.name,
