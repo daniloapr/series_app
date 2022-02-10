@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/dimens.dart';
+import 'package:series_app/features/details/details_screen.dart';
 import 'package:series_app/features/home/components/genres_text.dart';
+import 'package:series_app/features/home/components/poster_image.dart';
 import 'package:series_app/models/tv_show.dart';
 
 class TvShowItem extends StatelessWidget {
@@ -10,15 +13,12 @@ class TvShowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16.0),
+      borderRadius: BorderRadius.circular(Dimens.cardRadius),
       child: Stack(
         children: [
-          Hero(
-            tag: '${tvShow.id} TvShowImage',
-            child: Image.network(
-              tvShow.imageUrl,
-              key: Key('${tvShow.id} TvShowImage'),
-            ),
+          PosterImage(
+            id: tvShow.id,
+            imageUrl: tvShow.imageUrl,
           ),
           Positioned.fill(
             child: Container(
@@ -65,7 +65,13 @@ class TvShowItem extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  //TODO: navigate to details screen
+                  // In a regular project, I would create a router file and use
+                  // the `pushNamed` method instead.
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => DetailsScreen(tvShow: tvShow),
+                    ),
+                  );
                 },
               ),
             ),
