@@ -4,16 +4,14 @@ abstract class HomeState {
   const HomeState();
 }
 
-class HomeLoading extends HomeState {
-  final List<TvShow> list;
-
-  const HomeLoading({required this.list});
+class HomeLoadingState extends HomeState {
+  const HomeLoadingState();
 }
 
-class HomeSuccess extends HomeState {
+class HomeSuccessState extends HomeState {
   final List<TvShow> list;
 
-  const HomeSuccess({required this.list});
+  const HomeSuccessState({required this.list});
 }
 
-class HomeError extends HomeState {}
+class HomeErrorState extends HomeState {}

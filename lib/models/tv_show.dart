@@ -1,10 +1,9 @@
-import 'package:series_app/data/series_api/models/series_api_model.dart';
+import 'package:series_app/data/series_api/models/tv_shows_api_model.dart';
 
 class TvShow {
   final String id;
   final String name;
-  final String imageMediumUrl;
-  final String imageOriginalUrl;
+  final String imageUrl;
 
   /// Sumary in html text
   final String summary;
@@ -19,20 +18,18 @@ class TvShow {
   TvShow({
     required this.id,
     required this.name,
-    required this.imageMediumUrl,
-    required this.imageOriginalUrl,
+    required this.imageUrl,
     required this.summary,
     required this.startDate,
     required this.endDate,
     required this.genres,
   });
 
-  factory TvShow.fromApi(ShowsApiModel apiModel) {
+  factory TvShow.fromApi(TvShowsApiModel apiModel) {
     return TvShow(
       id: apiModel.id,
       name: apiModel.name,
-      imageMediumUrl: apiModel.imageMediumUrl,
-      imageOriginalUrl: apiModel.imageOriginalUrl,
+      imageUrl: apiModel.imageUrl,
       summary: apiModel.summary,
       startDate: apiModel.startDate,
       endDate: apiModel.endDate,

@@ -18,7 +18,7 @@ class HomeController {
       final apiList = await _seriesApi.getShows();
 
       _stateController.add(
-        HomeSuccess(list: apiList.map((e) => TvShow.fromApi(e)).toList()),
+        HomeSuccessState(list: apiList.map((e) => TvShow.fromApi(e)).toList()),
       );
     } catch (e) {
       // Handle error.

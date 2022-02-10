@@ -1,40 +1,42 @@
-class ShowsApiModel {
+class TvShowsApiModel {
   final String id;
   final String name;
-  final String imageMediumUrl;
-  final String imageOriginalUrl;
+  final String imageUrl;
 
   /// Sumary in html text
   final String summary;
   final DateTime startDate;
   final DateTime? endDate;
+  final List<String> genres;
   // date start
   // date end
   // genres list
   // episodes list
 
-  ShowsApiModel({
+  TvShowsApiModel({
     required this.id,
     required this.name,
-    required this.imageMediumUrl,
-    required this.imageOriginalUrl,
+    required this.imageUrl,
     required this.summary,
     required this.startDate,
     required this.endDate,
+    required this.genres,
   });
 
-  factory ShowsApiModel.fromJson(Map<String, dynamic> json) {
+  factory TvShowsApiModel.fromJson(Map<String, dynamic> json) {
     final startDate = DateTime.parse(json['premiered']);
     final endDate = DateTime.tryParse(json['ended'] ?? '');
+    final genres =
+        (json['genres'] as Iterable).map((e) => e.toString()).toList();
 
-    return ShowsApiModel(
+    return TvShowsApiModel(
       id: json['id'].toString(),
       name: json['name'],
-      imageMediumUrl: json['image']['medium'],
-      imageOriginalUrl: json['image']['original'],
+      imageUrl: json['image']['original'],
       summary: json['summary'],
       startDate: startDate,
       endDate: endDate,
+      genres: genres,
     );
   }
 }
