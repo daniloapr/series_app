@@ -19,4 +19,5 @@ This project works for:
 
 ## References
 
+- [TV Maze API](https://www.tvmaze.com/api)
 - [TV icon created by Freepik - Flaticon](https://www.flaticon.com/free-icons/tv)
