@@ -8,10 +8,6 @@ class TvShowsApiModel {
   final DateTime? startDate;
   final DateTime? endDate;
   final List<String> genres;
-  // date start
-  // date end
-  // genres list
-  // episodes list
 
   TvShowsApiModel({
     required this.id,

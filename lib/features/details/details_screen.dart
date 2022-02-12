@@ -4,6 +4,7 @@ import 'package:series_app/constants/strings.dart';
 import 'package:series_app/features/details/components/details_item.dart';
 import 'package:series_app/features/details/components/details_name.dart';
 import 'package:series_app/features/details/components/details_poster.dart';
+import 'package:series_app/features/details/components/episodes_list.dart';
 import 'package:series_app/features/home/components/app_back_button.dart';
 import 'package:series_app/models/tv_show.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -63,6 +64,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 endDate: widget.tvShow.endDate,
               ),
             ),
+            const EpisodesList(),
           ],
         ),
       ),
