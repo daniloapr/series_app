@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/colors.dart';
 import 'package:series_app/constants/strings.dart';
 
 class AppBackButton extends StatelessWidget {
@@ -18,8 +19,8 @@ class AppBackButton extends StatelessWidget {
             bottom: 16,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(Colors.white),
-        foregroundColor: MaterialStateProperty.all(Colors.black87),
+        backgroundColor: MaterialStateProperty.all(AppColors.white),
+        foregroundColor: MaterialStateProperty.all(AppColors.black),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50.0),

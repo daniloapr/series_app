@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/strings.dart';
 
 class HomeErrorWidget extends StatelessWidget {
   final VoidCallback onPressed;
@@ -9,11 +10,11 @@ class HomeErrorWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Ops.. Something wrong'),
+        const Text(Strings.somethingWrong),
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: onPressed,
-          child: Text('Try again'.toUpperCase()),
+          child: Text(Strings.tryAgainBtn.toUpperCase()),
         ),
       ],
     );

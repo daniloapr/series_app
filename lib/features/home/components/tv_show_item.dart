@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/colors.dart';
 import 'package:series_app/constants/dimens.dart';
 import 'package:series_app/features/details/details_screen.dart';
 import 'package:series_app/features/home/components/genres_text.dart';
@@ -50,7 +51,7 @@ class TvShowItem extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .headline6
-                      ?.copyWith(color: Colors.white),
+                      ?.copyWith(color: AppColors.white),
                 ),
                 const SizedBox(height: 4),
                 GenresText(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/colors.dart';
 
 class GenresText extends StatelessWidget {
   final List<String> genres;
@@ -27,7 +28,7 @@ class GenresText extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyText2
-              ?.copyWith(color: Colors.white),
+              ?.copyWith(color: AppColors.white),
         );
       },
     );
