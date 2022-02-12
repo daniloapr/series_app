@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/dimens.dart';
 import 'package:series_app/features/home/components/tv_show_item.dart';
 import 'package:series_app/models/tv_show.dart';
 
@@ -20,8 +21,8 @@ class TvShowsList extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.only(
             top: 16.0,
-            left: 32,
-            right: 32,
+            left: Dimens.listHorizontalPadding,
+            right: Dimens.listHorizontalPadding,
             bottom: isLastItem ? 16.0 : 0.0,
           ),
           child: TvShowItem(tvShow: item),
