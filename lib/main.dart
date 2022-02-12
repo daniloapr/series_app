@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/strings.dart';
 import 'package:series_app/features/home/home_screen.dart';
 import 'package:series_app/service_locator.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Series App',
+      title: Strings.appName,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
