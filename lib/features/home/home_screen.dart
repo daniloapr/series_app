@@ -39,9 +39,14 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const HomeTitle(),
-            SearchFormField(
-              onChanged: _controller.search,
-            ),
+            StreamBuilder<HomeState>(
+                stream: _controller.stateStream,
+                builder: (context, snapshot) {
+                  return SearchFormField(
+                    onChanged: _controller.search,
+                    isLoading: snapshot.data is HomeLoadingState,
+                  );
+                }),
             Expanded(
               child: StreamBuilder<HomeState>(
                 stream: _controller.stateStream,
@@ -62,9 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: _controller.fetchTvSeries,
                     );
                   } else if (state is HomeLoadingState) {
-                    return const Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    );
+                    if (state.list.isEmpty) {
+                      return const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      );
+                    } else {
+                      return TvShowsList(
+                        list: state.list,
+                        scrollController: _scrollController,
+                      );
+                    }
                   }
 
                   return Container();

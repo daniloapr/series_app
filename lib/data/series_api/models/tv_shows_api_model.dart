@@ -24,7 +24,6 @@ class TvShowsApiModel {
   });
 
   factory TvShowsApiModel.fromJson(Map<String, dynamic> json) {
-    print(json['id'].toString());
     //TODO test TvShowsApiModel.fromJson
     final startDate = DateTime.tryParse(json['premiered'] ?? '');
     final endDate = DateTime.tryParse(json['ended'] ?? '');
