@@ -97,7 +97,7 @@ String premieredText({DateTime? startDate, DateTime? endDate}) {
   final startDateText = '${startDate.year}/$startMonth/$startDay';
 
   if (endDate == null) {
-    return '$startDateText until now';
+    return '$startDateText ${Strings.untilToday.toLowerCase()}';
   }
 
   final endMonth = endDate.month.toString().padLeft(2, '0');

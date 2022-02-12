@@ -21,7 +21,7 @@ void main() {
     /// MapEntry(input: [startDate, endDate], expected).
     final premieredVariant = ValueVariant<MapEntry<List<DateTime?>, String>>({
       const MapEntry([null, null], 'Never'),
-      MapEntry([DateTime(2022, 01, 01), null], '2022/01/01 until now'),
+      MapEntry([DateTime(2022, 01, 01), null], '2022/01/01 until today'),
       MapEntry(
         [DateTime(2020, 01, 01), DateTime(2022, 02, 12)],
         '2020/01/01 - 2022/02/12',

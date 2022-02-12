@@ -10,4 +10,5 @@ class Strings {
   static const genre = 'Genre';
   static const premiered = 'Premiered';
   static const never = 'Never';
+  static const untilToday = 'Until today';
 }
