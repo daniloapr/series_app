@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:series_app/assets/images/images.dart';
-import 'package:series_app/constants/colors.dart';
-import 'package:series_app/constants/dimens.dart';
-import 'package:series_app/constants/strings.dart';
+import 'package:series_app/constants/constants.dart';
 import 'package:series_app/features/home/components/home_error_widget.dart';
+import 'package:series_app/features/home/components/home_title.dart';
 import 'package:series_app/features/home/components/search_bar.dart';
 import 'package:series_app/features/home/components/tv_shows_list.dart';
 import 'package:series_app/features/home/home_controller.dart';
@@ -40,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const HomeTitle(),
-            const SearchFormField(),
+            const SearchBar(),
             Expanded(
               child: StreamBuilder<HomeState>(
                 stream: _controller.stateStream,
@@ -62,39 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Container();
                 },
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HomeTitle extends StatelessWidget {
-  const HomeTitle({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: Dimens.horizontalPadding,
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Image.asset(
-              Images.logo32Px,
-            ),
-            const SizedBox(width: 16),
-            Text(
-              Strings.appName.toUpperCase(),
-              textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.headline5?.copyWith(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
             ),
           ],
         ),
