@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:series_app/constants/dimens.dart';
 
@@ -16,7 +17,17 @@ class PosterImage extends StatelessWidget {
       tag: '$id TvShowImage',
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Dimens.cardRadius),
-        child: Image.network(imageUrl),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          placeholder: (context, url) {
+            return const AspectRatio(
+              aspectRatio: Dimens.posterAspectRatio,
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
