@@ -8,12 +8,24 @@ class SeriesApi {
   ///
   /// @params:
   /// [search] - Filter the list searching by the serie's name.
-  Future<List<TvShowsApiModel>> getShows({String? search}) async {
+  Future<List<TvShowsApiModel>> getShows() async {
     try {
       final response = await Dio().get('$_baseUrl/shows');
 
       return (response.data as Iterable)
           .map((e) => TvShowsApiModel.fromJson(e))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<TvShowsApiModel>> searchShows(String value) async {
+    try {
+      final response = await Dio().get('$_baseUrl/search/shows?q=$value');
+
+      return (response.data as Iterable)
+          .map((e) => TvShowsApiModel.fromJson(e['show']))
           .toList();
     } catch (e) {
       rethrow;

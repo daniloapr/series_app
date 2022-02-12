@@ -3,17 +3,13 @@ import 'package:series_app/data/series_api/models/tv_shows_api_model.dart';
 class TvShow {
   final String id;
   final String name;
-  final String imageUrl;
+  final String? imageUrl;
 
   /// Sumary in html text
-  final String summary;
-  final DateTime startDate;
+  final String? summary;
+  final DateTime? startDate;
   final DateTime? endDate;
   final List<String> genres;
-  // date start
-  // date end
-  // genres list
-  // episodes list
 
   TvShow({
     required this.id,

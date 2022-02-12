@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:series_app/constants/constants.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+class SearchFormField extends StatelessWidget {
+  final ValueChanged<String> onChanged;
+
+  const SearchFormField({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,9 @@ class SearchBar extends StatelessWidget {
           filled: true,
           fillColor: AppColors.greyLight,
         ),
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.done,
+        onChanged: onChanged,
       ),
     );
   }

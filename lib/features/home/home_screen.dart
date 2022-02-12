@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:series_app/constants/constants.dart';
 import 'package:series_app/features/home/components/home_error_widget.dart';
 import 'package:series_app/features/home/components/home_title.dart';
-import 'package:series_app/features/home/components/search_bar.dart';
+import 'package:series_app/features/home/components/search_form_field.dart';
 import 'package:series_app/features/home/components/tv_shows_list.dart';
 import 'package:series_app/features/home/home_controller.dart';
 import 'package:series_app/features/home/home_state.dart';
@@ -38,7 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const HomeTitle(),
-            const SearchBar(),
+            SearchFormField(
+              onChanged: _controller.search,
+            ),
             Expanded(
               child: StreamBuilder<HomeState>(
                 stream: _controller.stateStream,

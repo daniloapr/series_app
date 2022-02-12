@@ -6,4 +6,5 @@ class Strings {
   static const tryAgainBtn = 'Try again';
   static const somethingWrong = 'Ops.. Something wrong';
   static const searchHint = 'Search';
+  static const noImageFound = 'No image found';
 }
