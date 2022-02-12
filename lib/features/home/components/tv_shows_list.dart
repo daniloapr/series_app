@@ -12,22 +12,30 @@ class TvShowsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (context, index) {
-        final item = list[index];
-        final isLastItem = index == list.length - 1;
-
-        return Padding(
-          padding: EdgeInsets.only(
-            top: 16.0,
-            left: Dimens.listHorizontalPadding,
-            right: Dimens.listHorizontalPadding,
-            bottom: isLastItem ? 16.0 : 0.0,
-          ),
-          child: TvShowItem(tvShow: item),
-        );
+    return ShaderMask(
+      shaderCallback: (bounds) {
+        return const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[Colors.transparent, Colors.white],
+        ).createShader(Rect.fromLTRB(0.0, 0.0, bounds.right, 30));
       },
+      child: ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          final item = list[index];
+
+          return Padding(
+            padding: EdgeInsets.only(
+              top: index == 0 ? 30 : 16.0,
+              left: Dimens.listHorizontalPadding,
+              right: Dimens.listHorizontalPadding,
+              bottom: index == list.length - 1 ? 16.0 : 0.0,
+            ),
+            child: TvShowItem(tvShow: item),
+          );
+        },
+      ),
     );
   }
 }

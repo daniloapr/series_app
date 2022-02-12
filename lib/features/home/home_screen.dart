@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/colors.dart';
 import 'package:series_app/features/home/components/home_error_widget.dart';
 import 'package:series_app/features/home/components/search_bar.dart';
 import 'package:series_app/features/home/components/tv_shows_list.dart';
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Column(
           children: [
