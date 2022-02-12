@@ -17,36 +17,39 @@ class PosterImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: '$id TvShowImage',
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(Dimens.cardRadius),
-        child: imageUrl != null
-            ? CachedNetworkImage(
-                imageUrl: imageUrl!,
-                placeholder: (context, url) {
-                  return const AspectRatio(
-                    key: Key('PosterImageLoading'),
-                    aspectRatio: Dimens.posterAspectRatio,
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                  );
-                },
-              )
-            : AspectRatio(
-                key: const Key('PosterImagePlaceholder'),
-                aspectRatio: Dimens.posterAspectRatio,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      Images.logo,
-                      width: 100,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(Strings.noImageFound),
-                  ],
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: Dimens.posterMaxWidth),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(Dimens.cardRadius),
+          child: imageUrl != null
+              ? CachedNetworkImage(
+                  imageUrl: imageUrl!,
+                  placeholder: (context, url) {
+                    return const AspectRatio(
+                      key: Key('PosterImageLoading'),
+                      aspectRatio: Dimens.posterAspectRatio,
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    );
+                  },
+                )
+              : AspectRatio(
+                  key: const Key('PosterImagePlaceholder'),
+                  aspectRatio: Dimens.posterAspectRatio,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        Images.logo,
+                        width: 100,
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(Strings.noImageFound),
+                    ],
+                  ),
                 ),
-              ),
+        ),
       ),
     );
   }

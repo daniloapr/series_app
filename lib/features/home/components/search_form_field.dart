@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:series_app/constants/constants.dart';
+import 'package:series_app/constants/colors.dart';
+import 'package:series_app/constants/dimens.dart';
+import 'package:series_app/constants/strings.dart';
 
 class SearchFormField extends StatelessWidget {
   final ValueChanged<String> onChanged;

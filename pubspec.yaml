@@ -18,6 +18,10 @@ dependencies:
   get_it: ^7.2.0
   cached_network_image: ^3.2.0
   uuid: ^3.0.5
+  flutter_html:
+    git:
+      url: https://github.com/daniloapr/flutter_html.git
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

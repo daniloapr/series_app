@@ -7,4 +7,7 @@ class Strings {
   static const somethingWrong = 'Ops.. Something wrong';
   static const searchHint = 'Search';
   static const noImageFound = 'No image found';
+  static const genre = 'Genre';
+  static const premiered = 'Premiered';
+  static const never = 'Never';
 }
