@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _controller = locator<HomeController>();
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -47,8 +48,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, snapshot) {
                   final state = snapshot.data;
 
+                  if (_scrollController.hasClients) {
+                    _scrollController.jumpTo(0);
+                  }
+
                   if (state is HomeSuccessState) {
-                    return TvShowsList(list: state.list);
+                    return TvShowsList(
+                      list: state.list,
+                      scrollController: _scrollController,
+                    );
                   } else if (state is HomeErrorState) {
                     return HomeErrorWidget(
                       onPressed: _controller.fetchTvSeries,

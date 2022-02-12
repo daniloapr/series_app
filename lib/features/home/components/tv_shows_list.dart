@@ -5,9 +5,11 @@ import 'package:series_app/models/tv_show.dart';
 
 class TvShowsList extends StatelessWidget {
   final List<TvShow> list;
+  final ScrollController scrollController;
   const TvShowsList({
     Key? key,
     required this.list,
+    required this.scrollController,
   }) : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class TvShowsList extends StatelessWidget {
         ).createShader(Rect.fromLTRB(0.0, 0.0, bounds.right, 30));
       },
       child: ListView.builder(
+        controller: scrollController,
         itemCount: list.length,
         itemBuilder: (context, index) {
           final item = list[index];

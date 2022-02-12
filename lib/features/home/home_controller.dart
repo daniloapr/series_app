@@ -10,8 +10,7 @@ class HomeController {
   final _stateController = BehaviorSubject<HomeState>();
   Stream<HomeState> get stateStream => _stateController.stream;
 
-  // 500 ms debouncer prevents the API maximum rate of 20 calls for 10 seconds.
-  final _searchDebouncer = Debouncer(const Duration(milliseconds: 500));
+  final _searchDebouncer = Debouncer(const Duration(milliseconds: 300));
 
   void dispose() {
     _stateController.close();
@@ -38,7 +37,7 @@ class HomeController {
           return;
         }
 
-        final apiList =await _seriesApi.searchShows(value);
+        final apiList = await _seriesApi.searchShows(value);
 
         _stateController.add(
           HomeSuccessState(
