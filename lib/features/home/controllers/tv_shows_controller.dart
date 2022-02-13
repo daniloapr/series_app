@@ -1,6 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:series_app/data/series_api/series_api.dart';
-import 'package:series_app/features/home/controllers/tv_show_state.dart';
+import 'package:series_app/features/home/controllers/tv_shows_state.dart';
 import 'package:series_app/models/tv_show.dart';
 import 'package:series_app/service_locator.dart';
 import 'package:series_app/utils/debouncer.dart';
@@ -9,9 +9,9 @@ import 'package:uuid/uuid.dart';
 class TvShowsController {
   final _seriesApi = locator<SeriesApi>();
   final _stateController =
-      BehaviorSubject<TvShowState>.seeded(const TvShowLoadingState(list: []));
-  Stream<TvShowState> get stateStream => _stateController.stream;
-  TvShowState get state => _stateController.value;
+      BehaviorSubject<TvShowsState>.seeded(const TvShowsLoadingState(list: []));
+  Stream<TvShowsState> get stateStream => _stateController.stream;
+  TvShowsState get state => _stateController.value;
 
   final _searchDebouncer = Debouncer(const Duration(milliseconds: 200));
   String _lastSearchId = '';
@@ -23,7 +23,7 @@ class TvShowsController {
   void fetchTvSeries() async {
     try {
       _stateController.add(
-        TvShowLoadingState(list: state.list),
+        TvShowsLoadingState(list: state.list),
       );
 
       _lastSearchId = const Uuid().v4().toString();
@@ -32,14 +32,14 @@ class TvShowsController {
 
       if (_lastSearchId == currentSearchId) {
         _stateController.add(
-          TvShowSuccessState(
+          TvShowsSuccessState(
             list: apiList.map((e) => TvShow.fromApi(e)).toList(),
           ),
         );
       }
     } catch (e) {
       // Handle error.
-      _stateController.add(HomeErrorState());
+      _stateController.add(TvShowsErrorState());
     }
   }
 
@@ -52,7 +52,7 @@ class TvShowsController {
         }
 
         _stateController.add(
-          TvShowLoadingState(list: state.list),
+          TvShowsLoadingState(list: state.list),
         );
 
         // _lastSearchId can be changed by the next call, invalidating this one.
@@ -62,14 +62,14 @@ class TvShowsController {
 
         if (_lastSearchId == currentSearchId) {
           _stateController.add(
-            TvShowSuccessState(
+            TvShowsSuccessState(
               list: apiList.map((e) => TvShow.fromApi(e)).toList(),
             ),
           );
         }
       });
     } catch (e) {
-      print(e);
+      _stateController.add(TvShowsErrorState());
     }
   }
 }
