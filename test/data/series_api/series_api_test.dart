@@ -5,8 +5,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:series_app/data/series_api/models/tv_show_api_model.dart';
 import 'package:series_app/data/series_api/series_api.dart';
 
-import 'series_api_mock.dart';
-
 class DioMock extends Mock implements Dio {}
 
 const _baseUrl = 'https://api.tvmaze.com';
