@@ -32,6 +32,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _episodesController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
