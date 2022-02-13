@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:series_app/data/series_api/series_api.dart';
 import 'package:series_app/features/details/episodes/controllers/episodes_controller.dart';
@@ -17,5 +18,6 @@ void setupLocator() {
   locator.registerFactory<EpisodesController>(() => EpisodesController());
 
   // ***** APIs *****
+  locator.registerFactory<Dio>(() => Dio());
   locator.registerFactory<SeriesApi>(() => SeriesApi());
 }

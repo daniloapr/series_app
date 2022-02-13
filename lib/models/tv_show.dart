@@ -15,11 +15,11 @@ class TvShow extends Equatable {
   const TvShow({
     required this.id,
     required this.name,
-    required this.imageUrl,
-    required this.summary,
-    required this.startDate,
-    required this.endDate,
-    required this.genres,
+    this.imageUrl,
+    this.summary,
+    this.startDate,
+    this.endDate,
+    this.genres = const [],
   });
 
   factory TvShow.fromApi(TvShowApiModel apiModel) {

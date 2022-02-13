@@ -1,4 +1,6 @@
-class TvShowApiModel {
+import 'package:equatable/equatable.dart';
+
+class TvShowApiModel extends Equatable {
   final String id;
   final String name;
   final String? imageUrl;
@@ -9,7 +11,7 @@ class TvShowApiModel {
   final DateTime? endDate;
   final List<String> genres;
 
-  TvShowApiModel({
+  const TvShowApiModel({
     required this.id,
     required this.name,
     required this.imageUrl,
@@ -20,7 +22,6 @@ class TvShowApiModel {
   });
 
   factory TvShowApiModel.fromJson(Map<String, dynamic> json) {
-    //TODO test TvShowsApiModel.fromJson
     final startDate = DateTime.tryParse(json['premiered'] ?? '');
     final endDate = DateTime.tryParse(json['ended'] ?? '');
     final genres =
@@ -36,4 +37,15 @@ class TvShowApiModel {
       genres: genres ?? [],
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        imageUrl,
+        summary,
+        startDate,
+        endDate,
+        genres,
+      ];
 }

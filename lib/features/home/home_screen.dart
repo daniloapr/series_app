@@ -3,7 +3,6 @@ import 'package:series_app/components/error_view.dart';
 import 'package:series_app/constants/colors.dart';
 import 'package:series_app/constants/strings.dart';
 import 'package:series_app/features/home/components/home_empty.dart';
-// import 'package:series_app/components/error_widget.dart';
 import 'package:series_app/features/home/components/home_title.dart';
 import 'package:series_app/features/home/components/search_form_field.dart';
 import 'package:series_app/features/home/components/tv_shows_list.dart';

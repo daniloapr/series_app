@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:series_app/constants/durations.dart';
-import 'package:series_app/data/series_api/models/tv_show_api_model.dart';
 import 'package:series_app/data/series_api/series_api.dart';
 import 'package:series_app/features/home/controllers/tv_shows_controller.dart';
 import 'package:series_app/features/home/controllers/tv_shows_state.dart';
@@ -12,18 +11,6 @@ import '../../../data/series_api/series_api_mock.dart';
 
 TvShow mockTvShow({String? id, String? name}) {
   return TvShow(
-    id: id ?? 'id',
-    name: name ?? 'name',
-    imageUrl: 'imageUrl',
-    summary: 'summary',
-    startDate: DateTime(2020),
-    endDate: DateTime(2021),
-    genres: const ['Commedy'],
-  );
-}
-
-TvShowApiModel mockTvShowApiModel({String? id, String? name}) {
-  return TvShowApiModel(
     id: id ?? 'id',
     name: name ?? 'name',
     imageUrl: 'imageUrl',
@@ -143,6 +130,7 @@ void main() {
       // Wait for debouncing time
       await Future.delayed(Durations.searchDebbounce);
       verify(() => seriesApi.searchShows('Spider Man')).called(1);
+      await Future.delayed(const Duration(milliseconds: 1));
 
       expect(states, [
         const TvShowsLoadingState(list: []),
@@ -170,6 +158,8 @@ void main() {
       await Future.delayed(Durations.searchDebbounce);
       verifyNever(() => seriesApi.searchShows(any()));
       verify(() => seriesApi.getShows()).called(1);
+
+      await Future.delayed(const Duration(milliseconds: 1));
 
       expect(states, [
         const TvShowsLoadingState(list: []),
@@ -218,18 +208,13 @@ void main() {
       verify(() => seriesApi.searchShows('Iron Man')).called(1);
 
       // Wait for search return
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 150));
 
       expect(states, [
         const TvShowsLoadingState(list: []),
         const TvShowsLoadingState(list: []),
         const TvShowsLoadingState(list: []),
-        TvShowsSuccessState(list: [
-          mockTvShow(
-            id: '2',
-            name: 'Iron Man',
-          )
-        ]),
+        TvShowsSuccessState(list: [mockTvShow(id: '2', name: 'Iron Man')]),
       ]);
     });
   });
