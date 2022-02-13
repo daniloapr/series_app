@@ -1,4 +1,4 @@
-class TvShowsApiModel {
+class TvShowApiModel {
   final String id;
   final String name;
   final String? imageUrl;
@@ -9,7 +9,7 @@ class TvShowsApiModel {
   final DateTime? endDate;
   final List<String> genres;
 
-  TvShowsApiModel({
+  TvShowApiModel({
     required this.id,
     required this.name,
     required this.imageUrl,
@@ -19,14 +19,14 @@ class TvShowsApiModel {
     required this.genres,
   });
 
-  factory TvShowsApiModel.fromJson(Map<String, dynamic> json) {
+  factory TvShowApiModel.fromJson(Map<String, dynamic> json) {
     //TODO test TvShowsApiModel.fromJson
     final startDate = DateTime.tryParse(json['premiered'] ?? '');
     final endDate = DateTime.tryParse(json['ended'] ?? '');
     final genres =
         (json['genres'] as Iterable?)?.map((e) => e.toString()).toList();
 
-    return TvShowsApiModel(
+    return TvShowApiModel(
       id: json['id'].toString(),
       name: json['name'],
       imageUrl: json['image']?['original'],

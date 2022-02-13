@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:series_app/data/series_api/models/tv_shows_api_model.dart';
+import 'package:series_app/data/series_api/models/episode_api_model.dart';
+import 'package:series_app/data/series_api/models/tv_show_api_model.dart';
 
 class SeriesApi {
   static const _baseUrl = 'https://api.tvmaze.com';
@@ -8,27 +9,27 @@ class SeriesApi {
   ///
   /// @params:
   /// [search] - Filter the list searching by the serie's name.
-  Future<List<TvShowsApiModel>> getShows() async {
-    try {
-      final response = await Dio().get('$_baseUrl/shows');
+  Future<List<TvShowApiModel>> getShows() async {
+    final response = await Dio().get('$_baseUrl/shows');
 
-      return (response.data as Iterable)
-          .map((e) => TvShowsApiModel.fromJson(e))
-          .toList();
-    } catch (e) {
-      rethrow;
-    }
+    return (response.data as Iterable)
+        .map((data) => TvShowApiModel.fromJson(data))
+        .toList();
   }
 
-  Future<List<TvShowsApiModel>> searchShows(String value) async {
-    try {
-      final response = await Dio().get('$_baseUrl/search/shows?q=$value');
+  Future<List<TvShowApiModel>> searchShows(String value) async {
+    final response = await Dio().get('$_baseUrl/search/shows?q=$value');
 
-      return (response.data as Iterable)
-          .map((e) => TvShowsApiModel.fromJson(e['show']))
-          .toList();
-    } catch (e) {
-      rethrow;
-    }
+    return (response.data as Iterable)
+        .map((data) => TvShowApiModel.fromJson(data['show']))
+        .toList();
+  }
+
+  Future<List<EpisodeApiModel>> getEpisodes(String showId) async {
+    final response = await Dio().get('$_baseUrl/shows/$showId/episodes');
+
+    return (response.data as Iterable)
+        .map((data) => EpisodeApiModel.fromJson(data))
+        .toList();
   }
 }

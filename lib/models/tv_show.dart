@@ -1,4 +1,4 @@
-import 'package:series_app/data/series_api/models/tv_shows_api_model.dart';
+import 'package:series_app/data/series_api/models/tv_show_api_model.dart';
 
 class TvShow {
   final String id;
@@ -21,7 +21,7 @@ class TvShow {
     required this.genres,
   });
 
-  factory TvShow.fromApi(TvShowsApiModel apiModel) {
+  factory TvShow.fromApi(TvShowApiModel apiModel) {
     return TvShow(
       id: apiModel.id,
       name: apiModel.name,

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:series_app/data/series_api/series_api.dart';
+import 'package:series_app/features/details/episodes/episodes_controller.dart';
 import 'package:series_app/features/home/home_controller.dart';
 
 /// Depency injection locator. It is reponsible to provide the application the
@@ -13,6 +14,7 @@ final locator = GetIt.instance;
 void setupLocator() {
   // ***** Controllers *****
   locator.registerFactory<HomeController>(() => HomeController());
+  locator.registerFactory<EpisodesController>(() => EpisodesController());
 
   // ***** APIs *****
   locator.registerFactory<SeriesApi>(() => SeriesApi());
