@@ -39,7 +39,7 @@ class HomeController {
       }
     } catch (e) {
       // Handle error.
-      print(e);
+      _stateController.add(HomeErrorState());
     }
   }
 
