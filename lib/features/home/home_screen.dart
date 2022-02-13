@@ -6,8 +6,8 @@ import 'package:series_app/constants/strings.dart';
 import 'package:series_app/features/home/components/home_title.dart';
 import 'package:series_app/features/home/components/search_form_field.dart';
 import 'package:series_app/features/home/components/tv_shows_list.dart';
-import 'package:series_app/features/home/home_controller.dart';
-import 'package:series_app/features/home/home_state.dart';
+import 'package:series_app/features/home/controllers/tv_show_controller.dart';
+import 'package:series_app/features/home/controllers/tv_show_state.dart';
 import 'package:series_app/service_locator.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _controller = locator<HomeController>();
+  final _controller = locator<TvShowsController>();
   final _scrollController = ScrollController();
 
   @override
@@ -41,16 +41,16 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const HomeTitle(),
-            StreamBuilder<HomeState>(
+            StreamBuilder<TvShowState>(
                 stream: _controller.stateStream,
                 builder: (context, snapshot) {
                   return SearchFormField(
                     onChanged: _controller.search,
-                    isLoading: snapshot.data is HomeLoadingState,
+                    isLoading: snapshot.data is TvShowLoadingState,
                   );
                 }),
             Expanded(
-              child: StreamBuilder<HomeState>(
+              child: StreamBuilder<TvShowState>(
                 stream: _controller.stateStream,
                 builder: (context, snapshot) {
                   final state = snapshot.data;
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     _scrollController.jumpTo(0);
                   }
 
-                  if (state is HomeSuccessState) {
+                  if (state is TvShowSuccessState) {
                     return TvShowsList(
                       list: state.list,
                       scrollController: _scrollController,
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       errorText: Strings.somethingWrong,
                       onPressed: _controller.fetchTvSeries,
                     );
-                  } else if (state is HomeLoadingState) {
+                  } else if (state is TvShowLoadingState) {
                     if (state.list.isEmpty) {
                       return const Center(
                         child: CircularProgressIndicator.adaptive(),

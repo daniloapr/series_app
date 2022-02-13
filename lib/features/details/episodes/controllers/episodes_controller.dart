@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:series_app/data/series_api/series_api.dart';
-import 'package:series_app/features/details/episodes/episodes_state.dart';
+import 'package:series_app/features/details/episodes/controllers/episodes_state.dart';
 import 'package:series_app/models/episode.dart';
 import 'package:series_app/service_locator.dart';
 

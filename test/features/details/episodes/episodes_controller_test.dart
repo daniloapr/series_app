@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:series_app/features/details/episodes/episodes_controller.dart';
+import 'package:series_app/features/details/episodes/controllers/episodes_controller.dart';
 import 'package:series_app/models/episode.dart';
 
 void main() {

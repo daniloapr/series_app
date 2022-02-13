@@ -1,17 +1,17 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:series_app/data/series_api/series_api.dart';
-import 'package:series_app/features/home/home_state.dart';
+import 'package:series_app/features/home/controllers/tv_show_state.dart';
 import 'package:series_app/models/tv_show.dart';
 import 'package:series_app/service_locator.dart';
 import 'package:series_app/utils/debouncer.dart';
 import 'package:uuid/uuid.dart';
 
-class HomeController {
+class TvShowsController {
   final _seriesApi = locator<SeriesApi>();
   final _stateController =
-      BehaviorSubject<HomeState>.seeded(const HomeLoadingState(list: []));
-  Stream<HomeState> get stateStream => _stateController.stream;
-  HomeState get state => _stateController.value;
+      BehaviorSubject<TvShowState>.seeded(const TvShowLoadingState(list: []));
+  Stream<TvShowState> get stateStream => _stateController.stream;
+  TvShowState get state => _stateController.value;
 
   final _searchDebouncer = Debouncer(const Duration(milliseconds: 200));
   String _lastSearchId = '';
@@ -23,7 +23,7 @@ class HomeController {
   void fetchTvSeries() async {
     try {
       _stateController.add(
-        HomeLoadingState(list: state.list),
+        TvShowLoadingState(list: state.list),
       );
 
       _lastSearchId = const Uuid().v4().toString();
@@ -32,7 +32,7 @@ class HomeController {
 
       if (_lastSearchId == currentSearchId) {
         _stateController.add(
-          HomeSuccessState(
+          TvShowSuccessState(
             list: apiList.map((e) => TvShow.fromApi(e)).toList(),
           ),
         );
@@ -52,7 +52,7 @@ class HomeController {
         }
 
         _stateController.add(
-          HomeLoadingState(list: state.list),
+          TvShowLoadingState(list: state.list),
         );
 
         // _lastSearchId can be changed by the next call, invalidating this one.
@@ -62,7 +62,7 @@ class HomeController {
 
         if (_lastSearchId == currentSearchId) {
           _stateController.add(
-            HomeSuccessState(
+            TvShowSuccessState(
               list: apiList.map((e) => TvShow.fromApi(e)).toList(),
             ),
           );
