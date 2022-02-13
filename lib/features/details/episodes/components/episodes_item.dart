@@ -18,6 +18,7 @@ class EpisodeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: AppColors.greyLight,
+      margin: const EdgeInsets.symmetric(vertical: 4),
       elevation: 0,
       child: ExpansionTile(
         tilePadding: const EdgeInsets.all(_padding),

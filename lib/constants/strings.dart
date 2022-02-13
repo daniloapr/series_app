@@ -12,4 +12,5 @@ class Strings {
   static const never = 'Never';
   static const untilToday = 'Until today';
   static const errorFetchingEpisodes = 'Could not find the episodes.';
+  static const season = 'Season';
 }
