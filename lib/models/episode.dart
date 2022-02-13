@@ -6,6 +6,7 @@ class Episode {
   final int season;
   final String? summary;
   final String? imageUrl;
+  final DateTime? airDate;
 
   Episode({
     required this.name,
@@ -13,6 +14,7 @@ class Episode {
     required this.season,
     this.summary,
     this.imageUrl,
+    this.airDate,
   });
 
   factory Episode.fromApi(EpisodeApiModel apiModel) {
@@ -22,6 +24,7 @@ class Episode {
       season: apiModel.season,
       imageUrl: apiModel.imageUrl,
       summary: apiModel.summary,
+      airDate: apiModel.airDate,
     );
   }
 }

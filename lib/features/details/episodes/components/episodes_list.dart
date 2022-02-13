@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:series_app/constants/colors.dart';
+import 'package:series_app/features/details/episodes/components/episodes_item.dart';
 import 'package:series_app/models/episode.dart';
 
 class EpisodesList extends StatelessWidget {
@@ -15,9 +17,7 @@ class EpisodesList extends StatelessWidget {
       itemCount: list.length,
       itemBuilder: (context, index) {
         final item = list[index];
-        return Card(
-          child: Text(item.name),
-        );
+        return EpisodeItem(episode: item);
       },
     );
   }

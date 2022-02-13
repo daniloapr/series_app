@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:series_app/components/error_view.dart';
 import 'package:series_app/constants/dimens.dart';
 import 'package:series_app/constants/strings.dart';
@@ -6,7 +7,7 @@ import 'package:series_app/features/details/components/details_item.dart';
 import 'package:series_app/features/details/components/details_name.dart';
 import 'package:series_app/features/details/components/details_poster.dart';
 import 'package:series_app/features/details/episodes/episodes_controller.dart';
-import 'package:series_app/features/details/episodes/episodes_list.dart';
+import 'package:series_app/features/details/episodes/components/episodes_list.dart';
 import 'package:series_app/features/details/episodes/episodes_state.dart';
 import 'package:series_app/features/home/components/app_back_button.dart';
 import 'package:series_app/models/tv_show.dart';
@@ -79,28 +80,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            StreamBuilder<EpisodesState>(
-              key: const Key('Episodes'),
-              stream: _episodesController.stateStream,
-              builder: (context, snapshot) {
-                final state = snapshot.data;
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Dimens.horizontalPadding,
+              ),
+              child: StreamBuilder<EpisodesState>(
+                key: const Key('Episodes'),
+                stream: _episodesController.stateStream,
+                builder: (context, snapshot) {
+                  final state = snapshot.data;
 
-                if (state is EpisodesSuccessState) {
-                  return EpisodesList(list: state.list);
-                } else if (state is EpisodesLoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  );
-                } else if (state is EpisodesErrorState) {
-                  return ErrorView(
-                    errorText: Strings.errorFetchingEpisodes,
-                    onPressed: () =>
-                        _episodesController.fetchEpisodes(widget.tvShow.id),
-                  );
-                }
+                  if (state is EpisodesSuccessState) {
+                    return EpisodesList(list: state.list);
+                  } else if (state is EpisodesLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );
+                  } else if (state is EpisodesErrorState) {
+                    return ErrorView(
+                      errorText: Strings.errorFetchingEpisodes,
+                      onPressed: () =>
+                          _episodesController.fetchEpisodes(widget.tvShow.id),
+                    );
+                  }
 
-                return Container();
-              },
+                  return Container();
+                },
+              ),
             ),
           ],
         ),
@@ -129,17 +135,13 @@ String premieredText({DateTime? startDate, DateTime? endDate}) {
     return Strings.never;
   }
 
-  final startMonth = startDate.month.toString().padLeft(2, '0');
-  final startDay = startDate.day.toString().padLeft(2, '0');
-  final startDateText = '${startDate.year}/$startMonth/$startDay';
+  final startDateText = DateFormat('yyyy/MM/dd').format(startDate);
 
   if (endDate == null) {
     return '$startDateText ${Strings.untilToday.toLowerCase()}';
   }
 
-  final endMonth = endDate.month.toString().padLeft(2, '0');
-  final endDay = endDate.day.toString().padLeft(2, '0');
-  final endDateText = '${endDate.year}/$endMonth/$endDay';
+  final endDateText = DateFormat('yyyy/MM/dd').format(endDate);
 
   return '$startDateText - $endDateText';
 }
