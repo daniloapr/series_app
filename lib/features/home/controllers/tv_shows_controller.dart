@@ -1,4 +1,5 @@
 import 'package:rxdart/rxdart.dart';
+import 'package:series_app/constants/durations.dart';
 import 'package:series_app/data/series_api/series_api.dart';
 import 'package:series_app/features/home/controllers/tv_shows_state.dart';
 import 'package:series_app/models/tv_show.dart';
@@ -13,7 +14,7 @@ class TvShowsController {
   Stream<TvShowsState> get stateStream => _stateController.stream;
   TvShowsState get state => _stateController.value;
 
-  final _searchDebouncer = Debouncer(const Duration(milliseconds: 200));
+  final _searchDebouncer = Debouncer(Durations.searchDebbounce);
   String _lastSearchId = '';
 
   void dispose() {
@@ -21,13 +22,14 @@ class TvShowsController {
   }
 
   Future<void> fetchTvSeries() async {
-    try {
-      _stateController.add(
-        TvShowsLoadingState(list: state.list),
-      );
+    _stateController.add(
+      TvShowsLoadingState(list: state.list),
+    );
 
-      _lastSearchId = const Uuid().v4().toString();
-      final currentSearchId = _lastSearchId;
+    _lastSearchId = const Uuid().v4().toString();
+    final currentSearchId = _lastSearchId;
+
+    try {
       final apiList = await _seriesApi.getShows();
 
       if (_lastSearchId == currentSearchId) {
@@ -39,7 +41,9 @@ class TvShowsController {
       }
     } catch (e) {
       // Handle error.
-      _stateController.add(TvShowsErrorState());
+      if (_lastSearchId == currentSearchId) {
+        _stateController.add(TvShowsErrorState());
+      }
     }
   }
 
@@ -68,7 +72,9 @@ class TvShowsController {
           );
         }
       } catch (e) {
-        _stateController.add(TvShowsErrorState());
+        if (_lastSearchId == currentSearchId) {
+          _stateController.add(TvShowsErrorState());
+        }
       }
     });
   }
