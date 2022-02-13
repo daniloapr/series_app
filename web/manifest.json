@@ -1,6 +1,6 @@
 {
-    "name": "series_app",
-    "short_name": "series_app",
+    "name": "Series App",
+    "short_name": "Series App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
