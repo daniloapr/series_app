@@ -20,7 +20,7 @@ class TvShowsController {
     _stateController.close();
   }
 
-  void fetchTvSeries() async {
+  Future<void> fetchTvSeries() async {
     try {
       _stateController.add(
         TvShowsLoadingState(list: state.list),
@@ -43,21 +43,21 @@ class TvShowsController {
     }
   }
 
-  void search(String value) async {
-    try {
-      _searchDebouncer.run(() async {
-        if (value.trim().isEmpty) {
-          fetchTvSeries();
-          return;
-        }
+  Future<void> search(String value) async {
+    _searchDebouncer.run(() async {
+      if (value.trim().isEmpty) {
+        fetchTvSeries();
+        return;
+      }
 
-        _stateController.add(
-          TvShowsLoadingState(list: state.list),
-        );
+      _stateController.add(
+        TvShowsLoadingState(list: state.list),
+      );
 
-        // _lastSearchId can be changed by the next call, invalidating this one.
-        _lastSearchId = const Uuid().v4().toString();
-        final currentSearchId = _lastSearchId;
+      // _lastSearchId can be changed by the next call, invalidating this one.
+      _lastSearchId = const Uuid().v4().toString();
+      final currentSearchId = _lastSearchId;
+      try {
         final apiList = await _seriesApi.searchShows(value);
 
         if (_lastSearchId == currentSearchId) {
@@ -67,9 +67,9 @@ class TvShowsController {
             ),
           );
         }
-      });
-    } catch (e) {
-      _stateController.add(TvShowsErrorState());
-    }
+      } catch (e) {
+        _stateController.add(TvShowsErrorState());
+      }
+    });
   }
 }

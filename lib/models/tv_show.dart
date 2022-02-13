@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:series_app/data/series_api/models/tv_show_api_model.dart';
 
-class TvShow {
+class TvShow extends Equatable {
   final String id;
   final String name;
   final String? imageUrl;
@@ -11,7 +12,7 @@ class TvShow {
   final DateTime? endDate;
   final List<String> genres;
 
-  TvShow({
+  const TvShow({
     required this.id,
     required this.name,
     required this.imageUrl,
@@ -32,4 +33,15 @@ class TvShow {
       genres: apiModel.genres,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        imageUrl,
+        summary,
+        startDate,
+        endDate,
+        genres,
+      ];
 }

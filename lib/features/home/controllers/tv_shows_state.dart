@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:series_app/models/tv_show.dart';
 
-abstract class TvShowsState {
+abstract class TvShowsState extends Equatable {
   abstract final List<TvShow> list;
 
   const TvShowsState();
@@ -11,6 +12,9 @@ class TvShowsLoadingState extends TvShowsState {
   final List<TvShow> list;
 
   const TvShowsLoadingState({required this.list});
+
+  @override
+  List<Object?> get props => [list];
 }
 
 class TvShowsSuccessState extends TvShowsState {
@@ -18,9 +22,15 @@ class TvShowsSuccessState extends TvShowsState {
   final List<TvShow> list;
 
   const TvShowsSuccessState({required this.list});
+
+  @override
+  List<Object?> get props => [list];
 }
 
 class TvShowsErrorState extends TvShowsState {
   @override
   List<TvShow> get list => [];
+
+  @override
+  List<Object?> get props => [list];
 }
