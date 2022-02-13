@@ -13,10 +13,10 @@ class AppBackButton extends StatelessWidget {
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
           const EdgeInsets.only(
-            left: 4,
-            right: 12,
-            top: 16,
-            bottom: 16,
+            left: 8,
+            right: 18,
+            top: 12,
+            bottom: 12,
           ),
         ),
         backgroundColor: MaterialStateProperty.all(AppColors.white),

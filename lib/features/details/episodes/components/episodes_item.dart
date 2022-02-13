@@ -20,44 +20,49 @@ class EpisodeItem extends StatelessWidget {
       color: AppColors.greyLight,
       margin: const EdgeInsets.symmetric(vertical: 4),
       elevation: 0,
-      child: ExpansionTile(
-        tilePadding: const EdgeInsets.all(_padding),
-        title: Text('${episode.number}. ${episode.name}'),
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(width: _padding),
-              Expanded(
-                flex: 2,
-                child: EpisodeImage(imageUrl: episode.imageUrl),
-              ),
-              const SizedBox(width: _padding),
-              Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (episode.airDate != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: AutoSizeText(
-                            getAirDateText(episode.airDate!),
-                            maxLines: 1,
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          dividerColor: Colors.transparent,
+        ),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.all(_padding),
+          title: Text('${episode.number}. ${episode.name}'),
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(width: _padding),
+                Expanded(
+                  flex: 2,
+                  child: EpisodeImage(imageUrl: episode.imageUrl),
+                ),
+                const SizedBox(width: _padding),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (episode.airDate != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: AutoSizeText(
+                              getAirDateText(episode.airDate!),
+                              maxLines: 1,
+                            ),
                           ),
-                        ),
-                      AutoSizeText(
-                        'Season ${episode.season}',
-                        maxLines: 1,
-                      )
-                    ],
-                  )),
-              const SizedBox(width: _padding),
-            ],
-          ),
-          Html(data: episode.summary ?? ''),
-        ],
+                        AutoSizeText(
+                          'Season ${episode.season}',
+                          maxLines: 1,
+                        )
+                      ],
+                    )),
+                const SizedBox(width: _padding),
+              ],
+            ),
+            Html(data: episode.summary ?? ''),
+          ],
+        ),
       ),
     );
   }

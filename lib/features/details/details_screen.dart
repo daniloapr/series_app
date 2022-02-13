@@ -91,10 +91,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   final state = snapshot.data;
 
                   if (state is EpisodesSuccessState) {
-                    return EpisodesList(list: state.list);
+                    return EpisodesList(
+                      list: state.list,
+                      seasonLength: state.seasonLength,
+                      selectedSeason: state.selectedSeason,
+                      onSeasonSelected: (season) {
+                        _episodesController.changeSeason(season);
+                      },
+                    );
                   } else if (state is EpisodesLoadingState) {
-                    return const Center(
-                      child: CircularProgressIndicator.adaptive(),
+                    return const Padding(
+                      padding: EdgeInsets.only(bottom: 50),
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
                     );
                   } else if (state is EpisodesErrorState) {
                     return ErrorView(
