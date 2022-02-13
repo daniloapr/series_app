@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:series_app/components/error_view.dart';
 import 'package:series_app/constants/colors.dart';
 import 'package:series_app/constants/strings.dart';
+import 'package:series_app/features/home/components/home_empty.dart';
 // import 'package:series_app/components/error_widget.dart';
 import 'package:series_app/features/home/components/home_title.dart';
 import 'package:series_app/features/home/components/search_form_field.dart';
@@ -18,19 +19,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _controller = locator<TvShowsController>();
+  final _tvShowsController = locator<TvShowsController>();
   final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _controller.fetchTvSeries();
+    _tvShowsController.fetchTvSeries();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _tvShowsController.dispose();
   }
 
   @override
@@ -42,16 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const HomeTitle(),
             StreamBuilder<TvShowsState>(
-                stream: _controller.stateStream,
+                stream: _tvShowsController.stateStream,
                 builder: (context, snapshot) {
                   return SearchFormField(
-                    onChanged: _controller.search,
+                    onChanged: _tvShowsController.search,
                     isLoading: snapshot.data is TvShowsLoadingState,
                   );
                 }),
             Expanded(
               child: StreamBuilder<TvShowsState>(
-                stream: _controller.stateStream,
+                stream: _tvShowsController.stateStream,
                 builder: (context, snapshot) {
                   final state = snapshot.data;
 
@@ -60,14 +61,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
 
                   if (state is TvShowsSuccessState) {
-                    return TvShowsList(
-                      list: state.list,
-                      scrollController: _scrollController,
-                    );
+                    if (state.list.isNotEmpty) {
+                      return TvShowsList(
+                        list: state.list,
+                        scrollController: _scrollController,
+                      );
+                    }
+
+                    return const HomeEmpty();
                   } else if (state is TvShowsErrorState) {
                     return ErrorView(
                       errorText: Strings.somethingWrong,
-                      onPressed: _controller.fetchTvSeries,
+                      onPressed: _tvShowsController.fetchTvSeries,
                     );
                   } else if (state is TvShowsLoadingState) {
                     if (state.list.isEmpty) {

@@ -16,4 +16,5 @@ class Strings {
   static const errorFetchingEpisodes = 'Could not find the episodes.';
   static const season = 'Season';
   static const episodes = 'Episodes';
+  static const emptySearch = "Your search didn't return any results";
 }
