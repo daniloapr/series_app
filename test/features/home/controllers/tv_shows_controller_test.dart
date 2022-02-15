@@ -75,7 +75,7 @@ void main() {
       expect(states, [
         const TvShowsLoadingState(list: []),
         const TvShowsLoadingState(list: []),
-        TvShowsErrorState(),
+        const TvShowsErrorState(),
       ]);
     });
   });
@@ -135,7 +135,7 @@ void main() {
       expect(states, [
         const TvShowsLoadingState(list: []),
         const TvShowsLoadingState(list: []),
-        TvShowsErrorState(),
+        const TvShowsErrorState(),
       ]);
     });
 

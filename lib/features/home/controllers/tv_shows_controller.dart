@@ -42,7 +42,7 @@ class TvShowsController {
     } catch (e) {
       // Handle error.
       if (_lastSearchId == currentSearchId) {
-        _stateController.add(TvShowsErrorState());
+        _stateController.add(const TvShowsErrorState());
       }
     }
   }
@@ -73,7 +73,7 @@ class TvShowsController {
         }
       } catch (e) {
         if (_lastSearchId == currentSearchId) {
-          _stateController.add(TvShowsErrorState());
+          _stateController.add(const TvShowsErrorState());
         }
       }
     });

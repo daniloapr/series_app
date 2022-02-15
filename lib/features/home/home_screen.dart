@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (state is TvShowsLoadingState) {
                     if (state.list.isEmpty) {
                       return const Center(
+                        key: Key('HomeLoading'),
                         child: CircularProgressIndicator.adaptive(),
                       );
                     } else {

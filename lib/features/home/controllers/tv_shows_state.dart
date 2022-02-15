@@ -28,6 +28,8 @@ class TvShowsSuccessState extends TvShowsState {
 }
 
 class TvShowsErrorState extends TvShowsState {
+  const TvShowsErrorState();
+
   @override
   List<TvShow> get list => [];
 
