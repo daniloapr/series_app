@@ -9,7 +9,7 @@ The main purpose of this project is to test what kind of solutions I can give to
 4. Run `flutter pub get` to install dependencies
 5. Run `flutter run` for debug mode or `flutter run --release`
 
-This project was developed with flutter `2.8` stable channel.
+This project was developed with Flutter `2.8` stable channel.
 
 There is also an `apk` file in the root of the project. You can use it to install a release mode app directly in your Android device.
 
