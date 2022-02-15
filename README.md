@@ -51,7 +51,7 @@ This project contain the following test examples:
 
 This proves that the chosen architecture is testable, however, the test coverage is low due to the short spare time I had to make the project.
 
-## References
+## 📖 References
 
 - [TV Maze API](https://www.tvmaze.com/api)
 - [TV icon created by Freepik - Flaticon](https://www.flaticon.com/free-icons/tv)
