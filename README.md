@@ -58,3 +58,11 @@ This proves that the chosen architecture is testable, however, the test coverage
 
 - [TV Maze API](https://www.tvmaze.com/api)
 - [TV icon created by Freepik - Flaticon](https://www.flaticon.com/free-icons/tv)
+
+## 📸 Screenshots
+
+![series 01](https://user-images.githubusercontent.com/31525418/153972852-afe931d2-cb37-4f15-8fcd-cc399126babf.jpeg)
+![series 02](https://user-images.githubusercontent.com/31525418/153972861-18cbfda2-e37c-47d5-829e-861aad9698f1.jpeg)
+![series 03](https://user-images.githubusercontent.com/31525418/153972871-c931befc-4f7a-4871-9f05-d8c860d17556.jpeg)
+![series 04](https://user-images.githubusercontent.com/31525418/153972877-87082293-7e2b-45aa-bf32-0a5023dbe72a.jpeg)
+
